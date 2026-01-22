@@ -24,3 +24,42 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@layer utilities {
+  /* Cache la scrollbar uniquement sur les écrans tactiles/mobiles */
+  @media (max-width: 768px) {
+    .scrollbar-hide-mobile::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide-mobile {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+
+  /* Style optionnel pour rendre la scrollbar plus discrète sur PC */
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 4px !important;
+  }
+  .scrollbar-thumb-blue-500\/20::-webkit-scrollbar-thumb {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    border-radius: 20px !important;
+  }
+  .scrollbar-thumb-blue-500\/20::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(59, 130, 246, 0.5) !important;
+  }
+}
